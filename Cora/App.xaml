@@ -1,8 +1,8 @@
-﻿<Application x:Class="Cora.App"
+<Application x:Class="Cora.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Cora"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Windows/Menu/Login.xaml">
     <Application.Resources>
          
     </Application.Resources>
