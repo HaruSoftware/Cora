@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <Folder Include="UI\" />
-    <Folder Include="Windows\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Windows\" />
   </ItemGroup>
 
 </Project>
