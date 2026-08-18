@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Cora"
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             StartupUri="Windows\Menu\MainMenu.xaml">
+             StartupUri="Windows\Menu\Login.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

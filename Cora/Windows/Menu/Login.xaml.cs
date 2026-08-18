@@ -1,6 +1,8 @@
+using Cora.Data;
+using Cora.Entities;
+using Cora.UI;
 using System;
 using System.Windows;
-using Cora.Services;
 
 namespace Cora.Windows.Menu
 {
@@ -9,12 +11,12 @@ namespace Cora.Windows.Menu
     /// </summary>
     public partial class Login : Window
     {
-        private UserRepository _userRepository;
-
         public Login()
         {
             InitializeComponent();
-            _userRepository = new UserRepository();
+
+            Serializer.CreateDirectories();
+            DataAccess.InitializeAll();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -28,16 +30,30 @@ namespace Cora.Windows.Menu
                 return;
             }
 
-            var user = _userRepository.AuthenticateUser(username, password);
+            //Autenticar usuário
 
-            if (user != null)
+            var user = DataAccess.Get("Users").GetData("Users", new DBFilter(" AND Username = @username", username)) as User;
+
+            if(user == null)
             {
-                MessageBox.Show($"Bem-vindo, {user.Username}!", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
-                // Here we navigate to the main application window or next screen
+                MessageBox.Show("Usuário não encontrado.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if(user.Password == password)
+            {
+                if (InstanceManager.Menu == null)
+                {
+                    InstanceManager.Menu = new MainMenu();
+                    InstanceManager.Menu.Show();
+                }
+
+                Close();
             }
             else
             {
                 MessageBox.Show("Usuário ou senha inválidos.", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
         }
 

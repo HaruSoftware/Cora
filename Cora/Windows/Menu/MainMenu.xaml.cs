@@ -33,9 +33,6 @@ namespace Cora.UI
         {
             InitializeComponent();
             Instance = this;
-
-            Serializer.CreateDirectories();
-            DataAccess.InitializeAll();
         }
         public static MainMenu Get()
         {

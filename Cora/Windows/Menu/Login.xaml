@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cora.Windows.Menu"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Login do sistema Cora" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid Background="#f0f0f0">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
-            <TextBlock Text="Cora Login" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <TextBlock Text="Faça login para acessar" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
             
             <TextBlock Text="Usuário" Margin="0,0,0,5"/>
             <TextBox x:Name="txtUsername" Height="30" Margin="0,0,0,15" Padding="5"/>
