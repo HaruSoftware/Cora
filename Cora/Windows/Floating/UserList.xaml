@@ -1,0 +1,95 @@
+﻿<Window x:Class="Cora.UI.Windows.UserList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Linq="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
+        mc:Ignorable="d"
+        Title="Selecionar Usuários" Height="400" Width="300" Loaded="OnWindowLoaded" ShowInTaskbar="True" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <fa:ImageAwesome Icon="Users" Width="30" HorizontalAlignment="Left" Grid.Row="0" Margin="20,0,0,0" Foreground="#FF3C3C3C" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Margin="60,5,20,0" Text="USUÁRIOS" FontFamily="Segoe UI Semibold" FontSize="21" Foreground="#FF3C3C3C" VerticalAlignment="Center"/>
+
+        <DataGrid MouseDown="GridMouseLeftDoubleClick" PreviewKeyDown="GridKeyDown" Grid.Row="1" x:Name="Users" IsReadOnly="true" Margin="10" FontFamily="Segoe UI Semibold" Foreground="#FF2B2B2B" AutoGenerateColumns="False" GridLinesVisibility="None" HeadersVisibility="Column" SelectionMode="Single" SelectionUnit="FullRow">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Padding" Value="12,0,15,5"/>
+                    <Setter Property="BorderThickness" Value="0 5 0 0"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" CanUserReorder="False" CanUserResize="False" Binding="{Binding Id}" Width="2*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#0078d7" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="NOME DE USUÁRIO" CanUserReorder="False" CanUserResize="False"  Binding="{Binding Username}" Width="10*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#0078d7" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="BorderThickness" Value="10"/>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="DataGridRow">
+                    <Setter Property="BorderBrush" Value="AliceBlue"/>
+                    <Setter Property="BorderThickness" Value="0 0 0 0"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="LightBlue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+        </DataGrid>
+
+        <TextBlock Visibility="Hidden" x:Name="WrongPasswordText" Grid.Row="2" VerticalAlignment="Top" Text="Senha incorreta! Tente novamente." Margin="18,0" FontFamily="Segoe UI Semibold" Foreground="#FFFF3333"/>
+
+        <Grid Margin="10,12,10,10" Grid.Row="3">
+
+            <PasswordBox KeyDown="Password_KeyDown" Background="#f2f2f2" VerticalContentAlignment="Center" Padding="8" Style="{StaticResource RoundedPasswordBox}" LostFocus="CheckPassword" Name="Password" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="35" Margin="5,0,85,0"/>
+
+            <Button Style="{StaticResource RoundedButton}" FontFamily="Segoe UI Semibold" Height="35" Width="80" Content="Acessar" Foreground="White" Click="CheckPassword" HorizontalAlignment="Right" Background="#0984e3"/>
+
+        </Grid>
+
+    </Grid>
+</Window>

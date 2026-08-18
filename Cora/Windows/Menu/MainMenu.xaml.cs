@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using Cora.Enums;
+using Cora.Entities;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,7 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Cora.Enums;
+using Cora.UI.Windows;
+using Cora.Data;
 
 namespace Cora.UI
 {
@@ -21,6 +24,8 @@ namespace Cora.UI
 
         public static MainMenu Instance { get; private set; }
 
+        public UserList Userlist { get; set; }
+
         public int LastSelectedPage { get; set; }
         public int CurrentSelectedPage { get; set; }
 
@@ -28,6 +33,9 @@ namespace Cora.UI
         {
             InitializeComponent();
             Instance = this;
+
+            Serializer.CreateDirectories();
+            DataAccess.InitializeAll();
         }
         public static MainMenu Get()
         {
@@ -50,8 +58,38 @@ namespace Cora.UI
 
             int index = int.Parse(button.Uid);
 
-            MessageBox.Show(index.ToString());
             SetWindow(index);
+        }
+        public void UpdateLoginState(object sender, RoutedEventArgs e)
+        {
+            PushNotes.ShowError("Identificado");
+
+            if (InstanceManager.ConnectedUser == null)
+            {
+                SetWindow(15);
+                return;
+            }
+
+            SetLoginState(null);
+            SetWindow((int)MenuWindow.HOME);
+
+        }
+        public void SetLoginState(User user)
+        {
+            var loggedColor = Brushes.LimeGreen;
+            var disconnectColor = Brushes.Red;
+
+            InstanceManager.ConnectedUser = user;
+
+            if (user == null)
+            {
+                UserLogged.Stroke = disconnectColor;
+                CurrentUserName.Text = "Desconectado";
+                return;
+            }
+
+            UserLogged.Stroke = loggedColor;
+            CurrentUserName.Text = user.FullName;
         }
         public void SetWindow(int window, object instance = null)
         {
@@ -60,6 +98,10 @@ namespace Cora.UI
             switch (window)
             {
                 case 0:
+                    break;
+                case (int)MenuWindow.WINDOW_USERLOGIN:
+                    Userlist = new UserList();
+                    Userlist.ShowDialog();
                     break;
             }
             CurrentSelectedPage = window;

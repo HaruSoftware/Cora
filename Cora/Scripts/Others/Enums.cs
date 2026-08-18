@@ -8,5 +8,6 @@ namespace Cora.Enums
     {
         NONE = -1,
         HOME = 0,
+        WINDOW_USERLOGIN = 15,
     }
 }

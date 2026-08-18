@@ -72,6 +72,18 @@
                     </Grid>
                 </Button>
 
+                
+                
+                <Grid Grid.Row="12" MinHeight="80" MaxHeight="80">
+                    <Button Focusable="False" Uid="15" Click="UpdateLoginState" Opacity="0" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+                    <Rectangle Name="UserLogged" Margin="5,20,5,20" HorizontalAlignment="Stretch" IsHitTestVisible="False" Grid.ColumnSpan="2" Fill="#f2f2f2" RadiusX="20" RadiusY="20" Stroke="Red" StrokeThickness="1"/>
+
+                    <fa:ImageAwesome Icon="User" IsHitTestVisible="False" Foreground="#636e72" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="18" Margin="16,0,0,1"/>
+
+                    <TextBlock Name="CurrentUserName" Padding="50,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" IsHitTestVisible="false" Text="Desconectado" Foreground="#636e72"  FontFamily="Segoe UI Semibold"/>
+                </Grid>
+
                 <Rectangle RadiusX="1" RadiusY="1" Name="CurrentPageMarker" Grid.Row="1" Margin="6,12,0,12" Width="3" Visibility="Visible" Fill="#0984e3" HorizontalAlignment="Left"/>
             </Grid>
         </Grid>

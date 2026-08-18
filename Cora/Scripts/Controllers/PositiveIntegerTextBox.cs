@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace MeliManager.UI.Controllers
+namespace Cora.UI.Controllers
 {
     public class PositiveIntegerTextBox : TextBox
     {
