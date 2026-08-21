@@ -3,6 +3,7 @@
 **Curso:** Análise e Desenvolvimento de Sistemas (ADS)  
 **Instituição:** FATEC Franca – Dr. Thomaz Novelino  
 **Nome do Projeto:** Cora  
+**Orientadore: Carlos Eduardo França Roland 
 
 ---
 
